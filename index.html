@@ -1,0 +1,198 @@
+<head>
+	<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>ProEconómico</title>
+	<link rel="stylesheet" href="/css/font.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+	<header>
+        <nav>
+            <h2><span><i class="icon-linegraph"></i>Pro</span>Econ&oacute;mico</h2>
+            {{#if currentUser}}
+			<ul>
+	                <li><a href="{{pathFor route='index'}}"><i class="icon-wallet"></i>Inicio</a></li>
+	                <li><a href="{{pathFor route='anyo'}}"><i class="icon-global"></i>Año</a></li>
+	                <li><a href="{{pathFor route='mes'}}"><i class="icon-map-pin"></i>Mes</a></li>
+	                <li><a href="#" class="menu"><i class="icon-profile-male"></i>{{currentUser.username}}</a>
+	                    <ol class="submenu">
+	                        <li><a href="{{pathFor route='actualizar'}}"><i class="icon-edit"></i>Actualizar</a></li>
+	                        <li><a href="{{pathFor route='config'}}"> <i class="icon-adjustments"></i>Configuración</a></li>
+	                        <li>{{ > salir}}</li>
+	                    </ol>
+	                </li>
+	            </ul>
+            {{/if}}
+        </nav>
+    </header>
+</body>
+<template name="salir">
+	<a href="#" class="salir"><i class="icon-lock"></i>Salir </a>
+</template>
+<template name="index">
+	<section>
+        <div class="col2">
+            <span>{{totalAnualIngreso}}</span>
+            <i>Bsf.</i>
+            <p>Ingreso total anual.</p>
+        </div>
+        <div class="col2">
+            <span>{{totalAnualEgreso}}</span>
+            <i>Bsf.</i>
+            <p>Egreso total anual.</p>
+        </div>
+        <div class="col2">
+            <span>{{ahorroMensual}}</span>
+            <i>Bsf.</i>
+            <p>Balance mes actual.</p>
+        </div>
+        <div class="col2">
+            <span>402,556</span>
+            <i>Bsf.</i>
+            <p>UNITEC</p>
+        </div>
+        <div class="col6">
+            <canvas id="gIndex" width="770px" height="400px"></canvas>
+            <p>Gráfica comparativa mes actual-mes anterior</p>
+        </div>
+        <div class="col4">
+            <h2><i class="icon-calendar"></i>{{mostrarMes}}</h2>
+            <p>Ingreso: {{ingresoMensual}} Bsf.</p>
+            <p>Egreso: {{gastoMensual}} Bsf.</p>
+            <h2><i class="icon-bargraph"></i>Proyección</h2>
+            <h1>{{proyeccion}}%</h1>
+            <h2><i class="icon-flag"></i>Meta mensual</h2>
+            <h4>400,000</h4>
+            <h4>200,000 - 50%</h4>
+
+        </div>
+    </section>
+</template>
+
+<template name="mes">
+	<section>
+        <div class="col2">
+            <span>400,000</span>
+            <i>Bsf.</i>
+            <p>Ingreso total mes.</p>
+        </div>
+        <div class="col2">
+            <span>400,000</span>
+            <i>Bsf.</i>
+            <p>Egreso total mes.</p>
+        </div>
+        <div class="col2">
+            <span>354,500</span>
+            <i>Bsf.</i>
+            <p>Ahorro mes actual.</p>
+        </div>
+        <div class="col2">
+            <span>123,456</span>
+            <i>Bsf.</i>
+            <p>Cuota UNITEC</p>
+        </div>
+        <div class="col7">
+            <ul>
+                <li>
+                    <span class="fecha">Fecha</span>
+                    <span class="nombre">Nombre</span>
+                    <span class="monto">Monto</span>
+                </li>
+                <li>
+                    <span class="fecha">15/10/2017</span>
+                    <span class="nombre">Lorem ipsum dolor sit amet.</span>
+                    <span class="monto">30,123</span>
+                </li>
+            </ul>
+        </div>
+        <div class="col4">
+            <h2><i class="icon-calendar"></i>Octubre</h2>
+            <p>Ingreso: 123,456 Bsf.</p>
+            <p>Egreso: 123,456 Bsf.</p>
+            <h2><i class="icon-bargraph"></i>Proyección</h2>
+            <h1>40%</h1>
+            <h2><i class="icon-flag"></i>Meta mensual</h2>
+            <h4>400,000</h4>
+            <h4>200,000 - 50%</h4>
+        </div>
+    </section>
+</template>
+
+<template name="actualizar">
+	<section>
+        <div class="col5">
+            <h2>Agregar movimientos</h2>
+            <form id="actualizar">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" required />
+                <label for="fecha">Fecha:</label>
+                <input type="date" name="fecha" required />
+                <label for="monto">Monto:</label>
+                <input type="number" name="monto" required />
+                <div class="radio">
+                	<label for="val1">Entrada</label>
+                	<input type="radio" name="val1" id="val1" value="entrada" required />
+                	<label for="val2">Salida</label>
+                	<input type="radio" name="val1" id="val2" value="salida" />
+                </div>
+                <button>Agregar <i class="icon-lightbulb"></i></button>
+            </form>
+        </div>
+    </section>
+</template>
+
+<template name="config">
+	<section>
+        <div class="col5">
+            <h2>Configuraci&oacute;n</h2>
+            <form id="Goal">
+                <h4>Mes</h4>
+                <label for="">Meta Mensual:</label>
+                <input type="number" name="meta" required />
+                <label for="">Cuota UNITEC:</label>
+                <input type="number" name="cuota" required />
+                <button>Aceptar <i class="icon-lightbulb"></i></button>
+            </form>
+        </div>
+    </section>
+</template>
+
+<template name="login">
+	<section>
+        <div class="col5">
+            <h2>Entrar</h2>
+            <form id="login">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombreI" required />
+                <label for="contra">Contraseña:</label>
+                <input type="password" id="contra" name="contraI" required />
+
+                <button>Entrar <i class="icon-shield"></i></button>
+            </form>
+        </div>
+        <div class="col5">
+            <h2>Registrarse</h2>
+            <form id="registro">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombreR" required />
+                <label for="contra">Contraseña:</label>
+                <input type="password" id="contraR" name="contraR" required />
+                <div class="radio">
+                	<label for="chk">Ver contraseña</label>
+                	<input type="checkbox" id="chk" class="eye" />
+                </div>
+                <button>Registrarse <i class="icon-shield"></i></button>
+            </form>
+        </div>
+    </section>
+    <script>
+    	$(".eye").click(function () {
+            if ($("#contraR").attr("type") === "password") {
+                $("#contraR").attr("type", "text");
+            } else {
+                $("#contraR").attr("type", "password");
+            }
+        });
+    </script>
+</template>
