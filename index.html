@@ -48,7 +48,7 @@
             <p>Balance mes actual.</p>
         </div>
         <div class="col2">
-            <span>402,556</span>
+            <span>{{UNITEC}}</span>
             <i>Bsf.</i>
             <p>UNITEC</p>
         </div>
@@ -63,8 +63,8 @@
             <h2><i class="icon-bargraph"></i>Proyección</h2>
             <h1>{{proyeccion}}%</h1>
             <h2><i class="icon-flag"></i>Meta mensual</h2>
-            <h4>400,000</h4>
-            <h4>200,000 - 50%</h4>
+            <h4>{{metaMensual}}</h4>
+            <h3>Cumplida en un: {{porcentajeMetaMensual}}%</h3>
 
         </div>
     </section>
@@ -73,22 +73,22 @@
 <template name="mes">
 	<section>
         <div class="col2">
-            <span>400,000</span>
+            <span>{{ingresoMensual}}</span>
             <i>Bsf.</i>
             <p>Ingreso total mes.</p>
         </div>
         <div class="col2">
-            <span>400,000</span>
+            <span>{{gastoMensual}}</span>
             <i>Bsf.</i>
             <p>Egreso total mes.</p>
         </div>
         <div class="col2">
-            <span>354,500</span>
+            <span>{{ahorroMensual}}</span>
             <i>Bsf.</i>
             <p>Ahorro mes actual.</p>
         </div>
         <div class="col2">
-            <span>123,456</span>
+            <span>{{cuotaUnitec}}</span>
             <i>Bsf.</i>
             <p>Cuota UNITEC</p>
         </div>
@@ -98,23 +98,27 @@
                     <span class="fecha">Fecha</span>
                     <span class="nombre">Nombre</span>
                     <span class="monto">Monto</span>
+                    <span class="tipo">Tipo</span>
                 </li>
-                <li>
-                    <span class="fecha">15/10/2017</span>
-                    <span class="nombre">Lorem ipsum dolor sit amet.</span>
-                    <span class="monto">30,123</span>
-                </li>
+                	{{#each listaMovimientos}}
+	                <li class="">
+	                    <span class="fecha">{{this.dia}} / {{this.mes}} / {{this.ano}}</span>
+	                    <span class="nombre">{{this.nombre}}.</span>
+	                    <span class="monto">{{this.monto}}</span>
+	                    <span class="tipo">{{this.tipo}}</span>
+	                </li>
+                	{{/each}}
             </ul>
         </div>
         <div class="col4">
-            <h2><i class="icon-calendar"></i>Octubre</h2>
-            <p>Ingreso: 123,456 Bsf.</p>
-            <p>Egreso: 123,456 Bsf.</p>
+            <h2><i class="icon-calendar"></i>{{mostrarMes}}</h2>
+            <p>Ingreso: {{ingresoMensual}} Bsf.</p>
+            <p>Egreso: {{gastoMensual}} Bsf.</p>
             <h2><i class="icon-bargraph"></i>Proyección</h2>
-            <h1>40%</h1>
+            <h1>{{proyeccion}}%</h1>
             <h2><i class="icon-flag"></i>Meta mensual</h2>
-            <h4>400,000</h4>
-            <h4>200,000 - 50%</h4>
+            <h4>{{metaMensual}}</h4>
+            <h3>Cumplida en: {{porcentajeMetaMensual}}%</h3>
         </div>
     </section>
 </template>
@@ -195,4 +199,46 @@
             }
         });
     </script>
+</template>
+
+<template name="anyo">
+	<section>
+        <div class="col2">
+            <span>{{totalAnualIngreso}}</span>
+            <i>Bsf.</i>
+            <p>Ingreso total año.</p>
+        </div>
+        <div class="col2">
+            <span>{{totalAnualEgreso}}</span>
+            <i>Bsf.</i>
+            <p>Egreso total año.</p>
+        </div>
+        <div class="col2">
+            <span>{{ahorroAnual}}</span>
+            <i>Bsf.</i>
+            <p>Ahorro año actual.</p>
+        </div>
+        <div class="col2">
+            <span>{{ahorroAnualPasado}}</span>
+            <i>Bsf.</i>
+            <p>Ahorro año anterior</p>
+        </div>
+        <div class="col6">
+            <div class="canvas">
+            	<canvas id="ctxAno" width="770px" height="400px"></canvas>
+            </div>
+            <p>Gráfica que muestra ingreso-egreso mensual del año en curso.</p>
+        </div>
+        <div class="col4">
+            <h2><i class="icon-calendar"></i>{{mostrarAno}}</h2>
+            <p>Ingreso: {{totalAnualIngreso}} Bsf.</p>
+            <p>Egreso: {{totalAnualEgreso}} Bsf.</p>
+            <h2><i class="icon-bargraph"></i>Proyección</h2>
+            <h1>{{proyeccion}}%</h1>
+            <h2><i class="icon-flag"></i>Meta anual.</h2>
+            <h4>{{metaAnual}}</h4>
+            <h3>Cumplida en un: {{porcentajeMetaAnual}}%</h3>
+
+        </div>
+    </section>
 </template>
