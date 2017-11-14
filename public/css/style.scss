@@ -14,7 +14,12 @@ body {
     background-color: snowwhite;
     color: #444;
 }
-
+.rojo {
+    color: red !important;
+}
+.nada {
+    //Esto no hace nada
+}
 .f {
     display: -webkit-flex;
     display: -ms-flex;
@@ -130,18 +135,25 @@ section {
             li {
                 @extend .f;
                 justify-content: space-between;
+                &:nth-child(2n) {
+                    background-color: #fbfbfb;
+                }
                 span {
                     padding: 10px;
                 }
                 span.nombre {
-                    width: 50%;
+                    width: 40%;
                 }
                 span.monto {
-                    width: 25%;
+                    width: 20%;
                     text-align: center;
                 }
                 span.fecha {
-                    width: 25%;
+                    width: 20%;
+                }
+                span.tipo {
+                    width: 20%;
+                    text-align: right;
                 }
             }
         }
